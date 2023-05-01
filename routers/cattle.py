@@ -33,8 +33,8 @@ async def get_cattle_async(side: UploadFile = File(...), rear: UploadFile = File
     Rear = await rear.read()
 
     cattle_id = str(uuid.uuid4())
-    Side_name = cattle_id+side.filename
-    Rear_name = cattle_id+rear.filename
+    Side_name = cattle_id+"_side.png"
+    Rear_name = cattle_id+"_rear.png"
 
     # contents = await myfile.read()
 

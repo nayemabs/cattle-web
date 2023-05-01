@@ -1,7 +1,6 @@
 import os
 from functools import lru_cache
 from kombu import Queue
-# import Settings
 from dotenv import dotenv_values
 
 

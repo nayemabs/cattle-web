@@ -127,3 +127,7 @@ dmypy.json
 #custom
 models/
 images/
+image_bak_oct_4/
+venv/
+venv.zip
+.env

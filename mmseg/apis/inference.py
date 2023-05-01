@@ -9,7 +9,7 @@ from mmseg.datasets.pipelines import Compose
 from mmseg.models import build_segmentor
 
 
-def init_segmentor(config, checkpoint=None, device='cpu'):
+def init_segmentor(config, checkpoint=None, device='cuda:0'):
     """Initialize a segmentor from config file.
 
     Args:
@@ -17,7 +17,7 @@ def init_segmentor(config, checkpoint=None, device='cpu'):
             object.
         checkpoint (str, optional): Checkpoint path. If left as None, the model
             will not load any weights.
-        device (str, optional) CPU/CUDA device option. Default 'cuda:0'.
+        device (str, optional) cuda:0/CUDA device option. Default 'cuda:0'.
             Use 'cpu' for loading model on CPU.
     Returns:
         nn.Module: The constructed segmentor.

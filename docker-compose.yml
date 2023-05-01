@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+ 
+  fastapi:
+    image: cattle
+    ports:
+      - 80:80
+    entrypoint: uvicorn  main:app --host 0.0.0.0 --port 80
+
+
+
+
+
+  # rabbitmq3:
+  #   container_name: "rabbitmq"
+  #   image: rabbitmq:3.10-management
+  #   environment:
+  #       - RABBITMQ_DEFAULT_USER=guest
+  #       - RABBITMQ_DEFAULT_PASS=guest
+  #   ports:
+  #       # AMQP protocol port
+  #       - '5672:5672'
+  #       # HTTP management UI
+  #       - '15672:15672'
+
+  worker:
+    image: cattle
+    environment:
+      - C_FORCE_ROOT=true
+    entrypoint: celery -A main.celery worker --loglevel=info -Q cattle --concurrency=2
+
+

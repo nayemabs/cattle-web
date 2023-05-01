@@ -1,8 +1,6 @@
-## Sample [FastAPI](https://fastapi.tiangolo.com/) Application to demonstrate Async architecture with [Celery](https://docs.celeryproject.org/), [RabbitMQ](https://www.rabbitmq.com/) and [Flower](https://flower.readthedocs.io/en/latest/)
-
 ![alt text](fast-api-celery.png)
 
-Sample application utilizing FastAPI, Celery with RabbitMQ for task queue. RabbitMQ is also used as Celery backend and optional flower for monitoring the Celery tasks.
+Livestock weight web server utilizing FastAPI, Celery with RabbitMQ for task queue. RabbitMQ is also used as Celery backend and optional flower for monitoring the Celery tasks.
 
 ### FastAPI
 
@@ -60,16 +58,16 @@ Dependencies will be installed from the Pipfile. Python version 3.9.2 is used fo
 2. Pipenv packaging tool
 3. RabbitMQ instance
 
-### Run the Application
+### Serve the Application
 
 ```
-python main.py
+gunicorn -k  uvicorn.workers.UvicornWorker main:app  -b 0.0.0.0:9001
 ```
 Start the Celery process, navigate to the project directory in a new terminal, activate the virtual environment, and then run:
 ```
 pipenv shell --python 3.9.2
 pipenv install -r requirements.txt
-celery -A main.celery worker --loglevel=info -Q universities,university --concurrency=3
+celery -A main.celery worker --loglevel=info -Q cattle --concurrency=2
 ```
 Optionally we can monitor the tasks submitted to Celery. To start the Flower process, Navigate to the project directory in a new terminal, activate the virtual environment, and then run:
 ```
@@ -77,16 +75,15 @@ pipenv shell --python 3.9.2
 pipenv install -r requirements.txt
 celery -A main.celery flower --port=5555
 ```
-Once the Flower starts we cann see the submitted tasks at <http://localhost:5555/tasks>.
+Once the Flower starts we can see the submitted tasks at <http://localhost:5555/tasks>.
 
-![alt text](flower1.png)
 
-This will start the application on port 9000 and Celery process will listen to the Queue universities,university
+This will start the application on port 900` and Celery process will listen to the Queue cattle
 
 ### Test the application
 
 FastAPI also automatically generated fully interactive API documentation that we can use to interact with our API. 
-We can visit http://127.0.0.1:9000/docs in our browser to see the interactive API documentation provided by [Swagger UI](https://github.com/swagger-api/swagger-ui):
+We can visit http://127.0.0.1:9001/docs in our browser to see the interactive API documentation provided by [Swagger UI](https://github.com/swagger-api/swagger-ui):
 
 ![alt text](swagger-UI.png)
 
