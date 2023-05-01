@@ -4,7 +4,7 @@
 
 
 ### Download the model 
-Please download the model from google drive using the following link: https://drive.google.com/drive/folders/1h0GxqjjuxZnmrIdhdHI731jnDv3AbzkU?usp=sharing
+Please download the model from google drive using the following link: https://drive.google.com/drive/folders/1RGUEoX8ywtBOigCRCdIY4KDIfyFaZwUt
 
 Unzip the model directory into the root directory of the project.
 
